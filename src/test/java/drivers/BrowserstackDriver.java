@@ -40,8 +40,7 @@ public class BrowserstackDriver implements WebDriverProvider {
         // Initialise the remote Webdriver using BrowserStack remote URL
         // and desired capabilities defined above
         try {
-            return new RemoteWebDriver(
-                    new URL(config.getRemoteUrl()), caps);
+            return new RemoteWebDriver(new URL(config.getRemoteUrl()), caps);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }

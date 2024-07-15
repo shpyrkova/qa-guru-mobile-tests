@@ -31,11 +31,12 @@ public class SearchTests extends TestBase {
             $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Starbucks");
         });
         step("Тап на статью с заголовком Starbucks", () ->
-                        $(xpath("//android.widget.TextView[@text='Starbucks']")).click());
+                $(xpath("//android.widget.TextView[@text='Starbucks']")).click());
         step("Убедиться, что открыта статья Starbucks", () -> {
             $(xpath("//android.widget.TextView[@text='Starbucks']"))
                     .shouldBe(visible);
             $(xpath("//android.widget.TextView[@text='American multinational coffeehouse chain']"))
                     .shouldBe(visible);
-                });
-}}
+        });
+    }
+}
