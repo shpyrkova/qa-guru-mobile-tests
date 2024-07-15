@@ -14,11 +14,8 @@ import java.net.URL;
 
 public class BrowserstackDriver implements WebDriverProvider {
 
-    private final BrowserstackConfig config;
+    private final BrowserstackConfig config = ConfigFactory.create(BrowserstackConfig.class, System.getProperties());
 
-    public BrowserstackDriver() {
-        this.config = ConfigFactory.create(BrowserstackConfig.class, System.getProperties());
-    }
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
