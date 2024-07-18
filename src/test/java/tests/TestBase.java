@@ -1,5 +1,6 @@
 package tests;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import config.MobileDriverProvider;
 import helpers.Attach;
@@ -28,6 +29,10 @@ public class TestBase {
     @AfterEach
     void addAttachments() {
         Attach.pageSource();
+        if (System.getProperty("deviceHost").equals("browserstack")) {
+            String sessionId = Selenide.sessionId().toString();
+            Attach.addVideo(sessionId);
+        }
         closeWebDriver();
     }
 }
