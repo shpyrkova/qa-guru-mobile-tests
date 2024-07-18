@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.visible;
@@ -14,6 +15,7 @@ public class SearchTests extends TestBase {
     @Test
     @DisplayName("Успешный поиск статей по тексту")
     void successfulSearchTest() {
+        if (!System.getProperty("deviceHost").equals("browserstack")) {back();}
         step("Ввести в поиске Appium", () -> {
             $(accessibilityId("Search Wikipedia")).click();
             $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Appium");
@@ -24,8 +26,10 @@ public class SearchTests extends TestBase {
     }
 
     @Test
+    @DisabledIfSystemProperty(named = "deviceHost", matches = "browserstack")
     @DisplayName("Успешное открытие статьи")
     void successfulOpenArticleTest() {
+        back();
         step("Ввести в поиске Starbucks", () -> {
             $(accessibilityId("Search Wikipedia")).click();
             $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Starbucks");
