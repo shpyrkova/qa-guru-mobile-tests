@@ -14,3 +14,5 @@ gradle test -DdeviceHost=emulation
 ```shell
 gradle test -DdeviceHost=browserstack
 ```
+***
+При запуске по кнопке в IDEA (или когда deviceHost не указан), тесты по умолчанию запускаются в Browserstack.
