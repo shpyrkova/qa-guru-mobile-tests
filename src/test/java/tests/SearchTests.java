@@ -15,7 +15,7 @@ public class SearchTests extends TestBase {
     @Test
     @DisplayName("Успешный поиск статей по тексту")
     void successfulSearchTest() {
-        if (!System.getProperty("deviceHost").equals("browserstack")) {back();}
+        if (!env.isBrowserstack()) {back();}
         step("Ввести в поиске Appium", () -> {
             $(accessibilityId("Search Wikipedia")).click();
             $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Appium");
@@ -29,7 +29,7 @@ public class SearchTests extends TestBase {
     @DisabledIfSystemProperty(named = "deviceHost", matches = "browserstack")
     @DisplayName("Успешное открытие статьи")
     void successfulOpenArticleTest() {
-        back();
+        if (!env.isBrowserstack()) {back();}
         step("Ввести в поиске Starbucks", () -> {
             $(accessibilityId("Search Wikipedia")).click();
             $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Starbucks");
